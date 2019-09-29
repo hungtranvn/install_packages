@@ -1,6 +1,9 @@
 # install packages for python2
 python -m pip install --user package_name
 
+# install packages for python3
+pip install packageName --user
+
 # install a specific gcc version
 Case 1: (https://www.mjmwired.net/resources/mjm-fedora-gcc.html)
 Required Files
