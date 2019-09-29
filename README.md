@@ -2,7 +2,7 @@
 python -m pip install --user package_name
 
 # install a specific gcc version
-Case 1:
+Case 1: (https://www.mjmwired.net/resources/mjm-fedora-gcc.html)
 Required Files
 
 To install from source obtain GCC from any GCC mirror sites. It is your personal selection in choice of the version of GCC. Upon writing this draft GCC 3.4.4 is available. Try to find a mirror with the full files NOT the diff files. The following is only an example:
