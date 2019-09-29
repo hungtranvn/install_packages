@@ -1,4 +1,4 @@
-# install packages for python
+# install packages for python2
 python -m pip install --user package_name
 
 # install a specific gcc version
