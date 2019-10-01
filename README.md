@@ -1,3 +1,6 @@
+# copy data between sever and local computer
+rsync -avzh /home/hungtran/Triqs/cro/opcond hungtran@27.72.102.168:/home/hungtran/cro/opcond
+
 # install packages for python2
 python -m pip install --user package_name
 
