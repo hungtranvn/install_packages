@@ -78,8 +78,12 @@ GCC recommends you do NOT build in the same directory as your source files are. 
 [mirandam@charon gcc]$ cd build         (important step)
 
 Our build directory above is /home/mirandam/gcc/build/. All our source code for GCC-3.4.4 is located in /home/mirandam/gcc/gcc-3.4.4/.
-Configuring Options
 
+download prerequisites:(important)
+cd gcc-3.4.4
+./contrib/download_prerequisites
+
+Configuring Options
 Extensive options are listed on the GCC configuration page provided on gnu.org. Most importantly the options must be set so as to NOT conflict or interfere with the GCC already installed on Fedora Core installation.
 
 The following options are some recommendations and observations taken from Fedora's configuration of GCC.
