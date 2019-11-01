@@ -1,3 +1,12 @@
+
+# install ibus-unikey on fedora
+dnf install ibus-unikey
+ibus-setup
+add in bashrc
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
 # Change Docker root dir using systemd
 
 The Docker root dir is usually something like /var/lib/docker by default. Here's how to change it using a systemd .service file.
