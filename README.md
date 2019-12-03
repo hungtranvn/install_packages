@@ -10,7 +10,7 @@ cd boost_1_55_0/
 Get the required libraries, main ones are icu for boost::regex support:
 
 sudo apt-get update
-sudo dnf groupinstall "Development Tools" "Development Libraries"
+sudo dnf groupinstall "Development Tools" "Development Libraries" \
 sudo apt-get install g++ python-devel autotools libicu-devel @development-tools bzip2-devel libboost-devel
 
 Boost's bootstrap setup:
