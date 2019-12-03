@@ -27,6 +27,7 @@ echo "If you want to automatically load triqs into your environment,"
 echo "please add the following line to your ~/.bash_profile (or ~/.zprofile):"
 echo "source $INSTALL_PREFIX/share/triqsvars.sh"
 
+and then install all following packages:
 cmake	>=  3.0.2 	CMake is used to control the software compilation process
 # sudo dnf install cmake
 
