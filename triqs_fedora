@@ -29,7 +29,9 @@ echo "source $INSTALL_PREFIX/share/triqsvars.sh"
 
 cmake	>=  3.0.2 	CMake is used to control the software compilation process
 # sudo dnf install cmake
+
 python 	>= 2.7 	The Python interpreter
+
 mpi 	openmpi 	Parallelism (1).
 # note hdf5 should be match to h5py
     Install hdf5 through the package manager 
@@ -38,8 +40,15 @@ mpi 	openmpi 	Parallelism (1).
     pip2 install --user --no-binary=h5py h5py
 
 hdf5 	>= 1.8.2 	File storage system. Important: the serial version must be installed
+
 fftw 	>= 3.2 	Fourier transforms
 # dnf install fftw-devel
+or
+./configure --enable-float --enable-shared --with-pic
+make
+make install
+https://github.com/TRIQS/TRIQS/issues/56
+
 boost 	>= 1.49 	C++ library collection
 # dnf install boost
 # dnf install boost-devel
@@ -50,7 +59,8 @@ wget -O boost_1_55_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1
 
 Get the required libraries, main ones are icu for boost::regex support:
 
-sudo apt-get update sudo dnf groupinstall "Development Tools" "Development Libraries"
+sudo dnf update 
+sudo dnf groupinstall "Development Tools" "Development Libraries"
 sudo apt-get install g++ python-devel autotools libicu-devel @development-tools bzip2-devel libboost-devel
 
 Boost's bootstrap setup:
@@ -66,8 +76,13 @@ and eventually install it:
 sudo ./b2 install
 
 numpy 	>= 1.8.0 < 1.17.0 	Python Package - Array library
+
 scipy 	>= ? 	Python Package - Scientific computing library
+
 h5py 	>= ? 	Python Package - Interface to hdf5 library
+
 matplotlib 	>= 0.99 	Python Package - Plotting library
+
 mpi4py 	>= ? 	Python Package - MPI bindings
+
 mako 	>= 0.9.1 	Python Package - Template library
