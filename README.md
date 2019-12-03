@@ -1,4 +1,32 @@
 
+# install boost lib for python_c++ interface: fedora
+
+Get the version of Boost that you require. This is for 1.55 but feel free to change or manually download yourself:
+
+wget -O boost_1_55_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.gz/download
+tar xzvf boost_1_55_0.tar.gz
+cd boost_1_55_0/
+
+Get the required libraries, main ones are icu for boost::regex support:
+
+sudo apt-get update
+sudo dnf groupinstall "Development Tools" "Development Libraries"
+sudo apt-get install g++ python-devel autotools libicu-devel @development-tools bzip2-devel libboost-devel
+
+Boost's bootstrap setup:
+
+./bootstrap.sh --prefix=/usr/
+
+Then build it with:
+
+./b2
+
+and eventually install it:
+
+sudo ./b2 install
+
+source: https://stackoverflow.com/questions/12578499/how-to-install-boost-on-ubuntu
+
 # install ibus-unikey on fedora
 dnf install ibus-unikey
 ibus-setup
