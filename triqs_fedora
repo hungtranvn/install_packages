@@ -1,0 +1,61 @@
+# prepare script
+
+#!/bin/bash
+
+# Set this variable to your desired install directory
+INSTALL_PREFIX=$(pwd)/install
+
+# Set the number of cores for the compilation
+NCORES=4
+
+# Clone the git repository of triqs
+git clone https://github.com/TRIQS/triqs triqs.src
+
+# Use cmake to configure the triqs build process
+mkdir -p triqs.build && cd triqs.build
+cmake ../triqs.src -DCMAKE_INSTALL_PREFIX=$INSTALL_PREFIX
+
+# Build, test and install triqs
+make -j$NCORES && make test && make install
+cd ../
+
+# Load the triqs installation into your environment
+source $INSTALL_PREFIX/share/triqsvars.sh
+
+echo 
+echo "If you want to automatically load triqs into your environment,"
+echo "please add the following line to your ~/.bash_profile (or ~/.zprofile):"
+echo "source $INSTALL_PREFIX/share/triqsvars.sh"
+
+cmake	>=  3.0.2 	CMake is used to control the software compilation process
+# sudo dnf install cmake
+python 	>= 2.7 	The Python interpreter
+mpi 	openmpi 	Parallelism (1).
+# note hdf5 should be match to h5py
+    Install hdf5 through the package manager 
+    Be sure to have pip installed: dnf install python-pip
+    Build h5py against the system hdf5 and install it into ~/.local with
+    pip2 install --user --no-binary=h5py h5py
+
+hdf5 	>= 1.8.2 	File storage system. Important: the serial version must be installed
+fftw 	>= 3.2 	Fourier transforms
+# dnf install fftw-devel
+boost 	>= 1.49 	C++ library collection
+# dnf install boost
+# dnf install boost-devel
+or \
+wget -O boost_1_55_0.tar.gz https://sourceforge.net/projects/boost/files/boost/1.55.0/boost_1_55_0.tar.gz/download
+tar xzvf boost_1_55_0.tar.gz
+cd boost_1_55_0/
+sudo apt-get update
+sudo apt-get install build-essential g++ python-dev autotools-dev libicu-dev build-essential libbz2-dev libboost-all-dev
+./bootstrap.sh --prefix=/usr/
+./b2
+sudo ./b2 install
+
+numpy 	>= 1.8.0 < 1.17.0 	Python Package - Array library
+scipy 	>= ? 	Python Package - Scientific computing library
+h5py 	>= ? 	Python Package - Interface to hdf5 library
+matplotlib 	>= 0.99 	Python Package - Plotting library
+mpi4py 	>= ? 	Python Package - MPI bindings
+mako 	>= 0.9.1 	Python Package - Template library
