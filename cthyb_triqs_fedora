@@ -1,0 +1,12 @@
+# install CTHyb based on triqs lib
+# install TRIQs
+# install NFFT:
+https://www-user.tu-chemnitz.de/~potts/nfft/installation.php
+download source file:
+wget https://www-user.tu-chemnitz.de/~potts/nfft/download/nfft-3.5.1.tar.gz
+tar -zxf nfft-3.5.1.tar.gz
+cd nfft-3.5.1
+./configure --enable-all --enable-openmp --enable-shared
+make
+make check
+su make install
