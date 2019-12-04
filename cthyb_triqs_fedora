@@ -10,3 +10,7 @@ cd nfft-3.5.1
 make
 make check
 su make install
+
+
+
+https://triqs.github.io/cthyb/latest/install.html
