@@ -1,0 +1,51 @@
+# GCC 73:
+step 1: Download ftp://ftp.gwdg.de/pub/misc/gcc/releases/gcc-7.3.0/  \
+step 2: Extract tar zxvf gcc-7.3.0.tar.gz \
+setep 3: cd gcc-7.3.0 and ./contrib/download_prerequisites`\
+
+step 4: On Fedora: dnf install libgcc.i686`\
+        mkdir build and cd build`\
+step 5: ../configure --prefix=/share/gcc73 --program-suffix=73 --enable-languages=c,c++ --enable-shared --enable-threads=posix \
+                     --disable-checking --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions`\
+step 6: make \
+step 7: make install (sudo) \
+step 8: Now create a text file named: gcc73.sh and in it add the following. \
+
+ #!/bin/sh \
+GCC73_BIN=/opt/gcc73/bin \
+PATH=$GCC34_BIN:$PATH \
+export PATH \
+
+step 9: As root, place the file into /etc/profile.d/ and make sure it has execute permissions for all. \
+
+[root@charon ~]# ls -la /etc/profile.d/gcc73.sh \
+-rw-r--r--  1 root root 66 Jun 15 21:38 /etc/profile.d/gcc73.sh \
+
+[root@charon ~]# chmod 755 /etc/profile.d/gcc73.sh \
+
+[root@charon ~]# ls -la /etc/profile.d/gcc73.sh \
+-rwxr-xr-x  1 root root 66 Jun 15 21:38 /etc/profile.d/gcc73.sh \
+step 10: Using New GCC
+
+If you installed as above, running gcc34 or any other app you installed should be directly accessible. You can verify with the following steps: \
+
+[mirandam@charon ~]$ which gcc34 \
+/opt/gcc34/bin/gcc34 \
+[mirandam@charon ~]$ which g++34 \
+/opt/gcc34/bin/g++34 \
+
+[mirandam@charon ~]$ gcc34 -v \
+Reading specs from /opt/gcc34/lib/gcc/i686-pc-linux-gnu/7.3.0/specs \
+Configured with: /home/mirandam/gcc/gcc-7.3.0/configure --prefix=/opt/gcc73 \
+--program-suffix=73 --enable-languages=c,c++ --enable-shared --enable-threads=posix \
+--disable-checking --with-system-zlib --enable-__cxa_atexit \
+--disable-libunwind-exceptions \
+Thread model: posix \
+gcc version 7.3.0 \
+
+step 11: Environment Variables
+Most softwares support the CC and CXX environment variables. First assign them, then run configure and/or make. Example:
+
+# export CC=gcc73
+# export CXX=g++73
+# ./configure
