@@ -1,0 +1,4 @@
+Fedora:
+dnf install hdf5
+dnf install hdf5-devel
+pip2 install --user --no-binary=h5py h5py
