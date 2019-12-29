@@ -1,10 +1,10 @@
 # GCC 73:
-step 1: Download ftp://ftp.gwdg.de/pub/misc/gcc/releases/gcc-7.3.0/  \
-step 2: Extract tar zxvf gcc-7.3.0.tar.gz \
-setep 3: cd gcc-7.3.0 and ./contrib/download_prerequisites`\
+step 1: Download ftp://ftp.gwdg.de/pub/misc/gcc/releases/gcc-7.3.0/ 
+step 2: Extract tar zxvf gcc-7.3.0.tar.gz 
+setep 3: cd gcc-7.3.0 and ./contrib/download_prerequisites
 
-step 4: On Fedora: dnf install libgcc.i686`\
-        mkdir build and cd build`\
+step 4: On Fedora: dnf install libgcc.i686
+        mkdir build and cd build
 
 step 5: ../configure --prefix=/opt/gcc73 
                 --program-suffix=73 --enable-languages=c,c++,fortran,go 
