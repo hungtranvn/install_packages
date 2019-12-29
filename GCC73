@@ -36,12 +36,13 @@ If you installed as above, running gcc34 or any other app you installed should b
 
 [mirandam@charon ~]$ gcc34 -v \
 Reading specs from /opt/gcc34/lib/gcc/i686-pc-linux-gnu/7.3.0/specs \
-Configured with: /home/mirandam/gcc/gcc-7.3.0/configure --prefix=/opt/gcc73 \
---program-suffix=73 --enable-languages=c,c++ --enable-shared --enable-threads=posix \
---disable-checking --with-system-zlib --enable-__cxa_atexit \
---disable-libunwind-exceptions \
-Thread model: posix \
-gcc version 7.3.0 \
+Configured with: /home/mirandam/gcc/gcc-7.3.0/configure --prefix=/opt/gcc74 
+                --program-suffix=74 --enable-languages=c,c++,fortran,go 
+                 --disable-multilib --enable-shared --enable-threads=posix 
+                 --disable-checking --with-system-zlib --enable-__cxa_atexit 
+                 --disable-libunwind-exceptions
+make -j 4
+make install (sudo)
 
 step 11: Environment Variables
 Most softwares support the CC and CXX environment variables. First assign them, then run configure and/or make. Example:
