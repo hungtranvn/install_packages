@@ -48,3 +48,9 @@ Most softwares support the CC and CXX environment variables. First assign them, 
 # export CC=gcc73
 # export CXX=g++73
 # ./configure
+
+
+
+# some errors related to LIBRARY_PATH:
+command: env | grep '^LIBRARY_PATH='
+deactive this PATH
