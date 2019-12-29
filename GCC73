@@ -36,8 +36,8 @@ If you installed as above, running gcc34 or any other app you installed should b
 
 [mirandam@charon ~]$ gcc34 -v \
 Reading specs from /opt/gcc34/lib/gcc/i686-pc-linux-gnu/7.3.0/specs \
-Configured with: /home/mirandam/gcc/gcc-7.3.0/configure --prefix=/opt/gcc74 
-                --program-suffix=74 --enable-languages=c,c++,fortran,go 
+Configured with: /home/mirandam/gcc/gcc-7.3.0/configure --prefix=/opt/gcc73 
+                --program-suffix=73 --enable-languages=c,c++,fortran,go 
                  --disable-multilib --enable-shared --enable-threads=posix 
                  --disable-checking --with-system-zlib --enable-__cxa_atexit 
                  --disable-libunwind-exceptions
