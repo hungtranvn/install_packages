@@ -5,7 +5,7 @@ setep 3: cd gcc-7.3.0 and ./contrib/download_prerequisites
 
 step 4: On Fedora: dnf install libgcc.i686
         mkdir build and cd build
-
+sudo dnf install texinfo
 step 5: ../configure --prefix=/opt/gcc73 
                 --program-suffix=73 --enable-languages=c,c++,fortran,go 
                  --disable-multilib --enable-shared --enable-threads=posix 
