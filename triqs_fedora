@@ -87,3 +87,5 @@ matplotlib 	>= 0.99 	Python Package - Plotting library
 mpi4py 	>= ? 	Python Package - MPI bindings
 
 mako 	>= 0.9.1 	Python Package - Template library
+
+mpi header file? module load mpi
