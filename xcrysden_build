@@ -1,0 +1,2 @@
+install all required packages
+ln -s ../libTogl.2.so libTogl.so
