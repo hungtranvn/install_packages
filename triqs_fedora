@@ -85,6 +85,7 @@ h5py 	>= ? 	Python Package - Interface to hdf5 library
 matplotlib 	>= 0.99 	Python Package - Plotting library
 
 mpi4py 	>= ? 	Python Package - MPI bindings
+pip2 install --no-cache-dir mpi4py
 
 mako 	>= 0.9.1 	Python Package - Template library
 
