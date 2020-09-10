@@ -2,3 +2,26 @@ Fedora:
 dnf install hdf5
 dnf install hdf5-devel
 pip2 install --user --no-binary=h5py h5py
+
+
+https://github.com/h5py/h5py/issues/1533#issuecomment-617519250
+The problem is that if one tries to install h5py from binary using
+pip3 install --no-binary=h5py h5py
+and the user does not have cython installed, the install process will download the latest version of cython (30 alpha1), which is not compatible with h5py as delivered by the tarball.
+So in this case the solution is to install cython with
+pip3 install cython
+which installs version 0.29, and the install h5py.
+
+Alternatively, one can unstall the version from the code cloned from the github. HOWEVER,
+in this case make sure that you have numpy>=1.18.3, or else the library will compile, but will
+crash when loaded with the following error
+
+File "/nas/longleaf/home/XXX/.local/lib/python3.6/site-packages/h5py/init.py",
+line 45, in
+from ._conv import register_converters as _register_converters,
+File "h5py/h5t.pxd", line 15, in init h5py._conv
+File "h5py/h5t.pyx", line 262, in init h5py.h5t
+File "h5py/h5t.pyx", line 257, in h5py.h5t._get_available_ftypes
+AttributeError: 'numpy.dtype' object has no attribute 'typeobj'
+
+Apparently, the installer is satisfied with numpy version 1.7 or above, but that is clearly not enough.
