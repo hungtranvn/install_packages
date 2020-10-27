@@ -1,2 +1,4 @@
 install all required packages
 ln -s ../libTogl.2.so libTogl.so
+Link: https://sourceforge.net/projects/togl/files/Togl/2.0/Togl2.0-8.4-Linux64.tar.gz/download
+for fedora_3(remenber 64 version)
