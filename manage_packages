@@ -1,0 +1,67 @@
+useful links:
+https://www.linux.com/news/how-install-packages-source-linux/
+https://freetuts.net/cau-truc-folder-trong-vps-linux-1314.html
+
+GIT – Có nhiều bạn khi lần đầu tiên đến với Linux cảm giác sự khó khăn và bất tiện của việc cài đặt các ứng dụng trên Linux, đặc biệt là các ứng dụng phải cài đặt từ mã nguồn như xine, openGL… Góc Linux xin hướng dẫn các bạn Install open source từ linux.
+Trên Windows, bạn chỉ cần tải ứng dụng về, giải nén rồi click vào file setup là hoàn tất việc cài đặt, nhưng trên Linux đó là một chuyện hoàn toàn khác. Bài viết này sẽ nhằm mục đích hướng dẫn bạn các thao tác cài đặt các phần mềm ứng dụng trên Linux và cung cấp các kiến thức căn bản giúp bạn có thể quản lý hệ thống của riêng mìnhBài viết sẽ giả sử rằng bạn đã biết cách sử dụng một số phần mềm quản lý gói như rpm. Để dễ dàng thì bài viết sẽ gọi các phần mềm trên Linux là các gói (package). Thực tế tên gọi ‘gói’ đúng đắn hơn vì các gói trên Linux có thể không phải là một trình ứng dụng nào đó mà chỉ là các thư viện nền như thư viện đồ họa Gtk+ hoặc OpenGL…
+
+1. Giới thiệu 
+
+Bạn có thể sẽ tự hỏi rằng tại sao các phần mềm trên Linux không tự đóng gói sẵn cho chúng ta rồi khi xuất bạn chỉ cần tải về và cài đặt nó. Câu trả lời nằm ở 2 vấn đề, vấn đề thứ 1 là các phần mềm viết trên Linux không hẳn chỉ có thể chạy trên Linux mà có thể chạy trên nhìều hệ thống khác nhau trong họ Unix như Solaris, AIX, HP-UX… thậm chí các phần mềm đó có thể chạy trên rất nhiều vi xử lý khác nhau như Intel, Motorola, PPC… Có được sự đa năng đó là nhờ vào tính đa nền (portable) của ngôn ngữ C/C++ nhưng đòi hỏi chúng ta phải biên dịch lại phần mềm từ mã nguồn cho hệ thống mà chúng vận hành. Bạn sẽ tự hỏi là tại sao các nhà phát triển lại không biên dịch sẵn cho chúng ta trên hệ thống thông dụng nào đó như Linux chẳng hạn.
+
+Câu trả lời là bởi vì các phần mềm này là phần mềm mã nguồn mở và các nhà phát triển không có cách gì hơn là để lại phần biên dịch cho chúng ta. Tuy nhiên bạn đừng thất vọng vì có một số nhà phát triển rất là tốt bụng có thể biên dịch sẵn cho chúng ta ra các gói có dạng rpm và cùng với sự hỗ trợ của công ty Red Hat chúng ta cũng đã có những chương trình quản lý các phần mềm hiệu quả không kém gì trên Windows như RPM (Redhat Package Manager). Mặc dù là thế nhưng không phải lúc nào các gói mới nhất từ các nhà phát triển gốc đều có phiên bản biên dịch sẵn mà thường là một khỏang thời gian sau các phiên bản đó mới có được dưới dạng biên dịch sẵn. Bên cạnh đó còn có rất nhiều nhà phát triển không hề biên dịch sẵn sản phầm của mình mà đòi hòi người dùng phải biên dịch, điển hình là trình chơi phim và nhạc xine. Các gói biên dịch sẵn các bạn có từ xine đa số là từ các nhà phát triển khác. Do đó nếu bạn không bạn không biết cách cài đặt các gói từ nguồn là một trở ngại rất lớn cho việc hiểu và quản trị hệ thống của riêng mình.
+
+2. Căn bản của việc cài đặt 
+
+Điều đầu tiên khi bạn tiến hành cài đặt là bạn phải có mã nguồn của gói đó trước. Hãy lên mạng search bất kì gói nào bạn thích như thư viện Gtk+ hoặc Gnome… Sau khi tải về, thông thường có dạng là .gz hoặc .bz2, đây đều là 2 chuẩn nén khác nhau, sau khi giải nén bằng gunzip cho gz hoặc bunzip2 cho bz2 thì các gói sẽ có dạng mới là tar, cũng là một chuẩn nén khác, bạn có thể giải nén bằng lệnh, tar -xvf… Thế nhưng đế dễ dàng và tiết kiệm dung lượng ổ đĩa thì chúng ta có thể gộp các câu lệnh đó thành 1 như sau:
+
+    – Đối với gói .gz: # tar -zxvf tengoi.gz
+    – Đối với gói .bz2: # tar -jxvf tengoi.bz2
+
+Sau khi giải nén xong và tìm tập tin INSTALL để đọc cụ thể cho phần hướng dẫn cài đặt. Thế nhưng hầu như các gói đều tuân theo các thao tác tuần tự sau:
+
+    # ./configure
+    # make
+    # make install
+
+Chỉ có vài gói đặc biệt sẽ có riêng cách cài đặt nhưng khi bạn đã nắm vững nguyên tắc chung thì dù là cách thức nào bạn cũng có thể xoay xở được. Chúng ta hãy xét đến câu lệnh đầu tiên, ./configure… Thực chất configure là một shell script sẽ kiểm tra những yêu cầu của hệ thống của bạn có đáp ứng đủ để cài đặt gói lên không, ví dụ như một số gói đòi hỏi bạn phải có sẵn thư viện đồ họa Gtk 2.4 trở lên hoặc là thư viện để giải nén nhạc Mp3…
+
+Rất nhiều gói có sự phụ thuộc như thế chứ các gói khi tải về không hề có sẵn các gói tương ứng cần thiết cho nó. Khi bạn chạy configure xong kết quả sẽ cho bạn biết các gói nào cần thiết để cài đặt. Nhiệm vụ của bạn không gì hơn là phải tìm các gói phụ thuộc đó cài lên máy rồi mới tiếp tục việc cài đặt. Nếu như hệ thống của bạn thỏa mãn đầy đủ các yêu cầu để cài đặt thì các Makefile sẽ được tạo ra. Makefile là một file đặc biệt của tiện ích make nhằm hướng dẫn biên dịch mã nguồn của gói ra dạng thực thi.
+
+Sau khi bạn thực thi lệnh ‘make’ xong thì toàn bộ mã nguồn của gói đã được biên dịch sang dạng thực thi nhưng các file thực thi vẫn còn nằm trên thư mục hiện hành. Do đó bạn cần phải thực hiện thêm lệnh ‘make install’ để chép các file thực thi đó sang đúng vị trí của nó trên hệ thống. Nếu như không có thông báo lỗi gì xảy ra thì bạn đã hòan tất việc cài đặt gói lên hệ thống của mình.
+
+3. Tổ chức các file trên hệ thống 
+
+Bạn hoàn toàn biết thư mục trên Linux thì thư mục /usr là thư mục quan trọng nhất vì nó sẽ chứa các chương trình và hàm thư viện trên đó. Trong thư mục /usr/bin là sẽ chứa các file thực thi cho các gói bạn đã cài đặt trên máy, các file trong thư mục này bạn sẽ thấy các file rất quen thuộc như mozilla, gedit .v.v… Thư mục /usr/lib sẽ chứa các hàm thư viện, bạn sẽ thấy rất nhiều files có phần mở rộng là .so (shared object) là các hàm thư viện liên kết động hoặc .a (archive) hoặc .la đều là các hàm thư viện liên kết tĩnh. Đặc tính căn bản của 2 dạng thư viện này là hàm thư viện liên kết tĩnh sẽ được liên kết thẳng với files thực thi luôn trong quá trình liên kết, còn hàm thư viện liên kết động thì sẽ được liên kết trong quá trình thực thi, cho nên sau khi chương trình đã được biên dịch và liền kết rồi các thư viên tĩnh chúng ta có thể bỏ đi nhưng thư viện liên kết động thì bắt buộc phải đi kèm với chương trình. Thư mục /usr/share sẽ chứa các icon, manual hoặc info của gói.
+
+4. Loại bỏ một gói 
+
+Nếu bạn mong muốn lọai bỏ một gói đã cài đặt trên hệthống thì cách duy nhất là bạn phải vào lại thư mục mã nguồn của gói và gõ lệnh
+
+    make uninstall
+
+Thông thường bạn sẽ có các câu lệnh sau:
+
+    make clean
+
+    make distclean
+
+Các câu lệnh có ý nghĩa rất tương đối và được định nghĩa trong tập tin Makefile, nên đầu tiên bạn cứ thử với ‘make uninstall’ rồi ‘make clean’ cái cuối cùng ‘make distclean’ là giúp bạn xóa hết các tập tin đã biên dịch ở thư mục nguồn và đồng thời xóa Makefile, bạn phải chạy lại ./configure để tạo lại Makefile.
+
+5. Quản lý các gói 
+
+Do việc xóa bỏ một gói như trên rất là phiền phức đôi lúc bạn chẳng thể xóa bỏđược nếu như mất đi mã nguồn, cho nên bạn có thể thay vì cài nó vào thư mục mặc định là /usr thì bạn có thể cài vào các thư mục của riêng bạn, ví dụ như bạn có thể tạo thư mục ‘/soft’… Sau đó để cài gói gedit thì bạn tạo thêm thư mục /soft/gedit và dùng lệnh ./configure… bạn thêm tùy chọn sau:
+
+    ./configure –prefix=/soft/gedit
+
+Thì khi bạn gõ make install sẽ copy toàn bộ sang thư mục /soft/gedit. Khi bạn muốn xóa toàn bộ gói thì chỉ đơn giản xóa đi thư mục đó thôi. Lưu ý là khi bạn cài vào thư mục riêng của mình rồi bạn phải tạo 2 đường dẫn cho 2 biến môi trường (environment variable) LD_LIBRARY_PATH và PKG_CONFIG_PATH.
+
+LD_LIBRARY_PATH sẽ có đường dẫn đến thư mục lib của gói vừa tạo (ví dụ như /soft/gedit/lib) còn PKG_CONFIG_PATH sẽ có đường dẫn đến thư mục pkg_config trong thư mục lib (ví dụ như /soft/gedit/lib/pkg_config). Bên cạnh đó nếu bạn muốn chương trình gọi tự động thì bạn cũng nên thêm vào biến PATH cho gói của mình.
+
+6. Lời kết 
+
+Đối với cách cài trên thì bạn dể dàng quản lý các gói của mình nhưng đối với các dạng thư viện thì bạn nên cài nó vào thư mục /usr hơn là thư mục riêng của mình vì một số gói sẽ tìm các thư việc trên thư mục mặc định /usr và /usr/local hơn là các thư mục riêng người dùng nên nếu bạn cài lên thư mục riêng thì đôi lúc các thư viện đó sẽ không được tìm ra. Thông thường lệnh ./configure đi đôi với rất nhiều tùy chọn cho phép bạn lựa chọn nhiều tính năng khác nhau, bạn hãy gõ
+
+    ./configure –help
+
+để mà biết đầy đủ các tùy chọn của gói
