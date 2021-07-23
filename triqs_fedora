@@ -90,3 +90,5 @@ pip2 install --no-cache-dir mpi4py
 mako 	>= 0.9.1 	Python Package - Template library
 
 mpi header file? module load mpi
+
+https://www-lb.open-mpi.org/software/ompi/v4.0/ file tar.gz ./configure --prefix="/home/usr/.openmpi" --prefix="/home/usr/local" make su make install
