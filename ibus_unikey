@@ -1,0 +1,17 @@
+This instruction for Fedora 30
+
+# dnf install ibus-unikey \
+terminal: konsolar \
+# ibus-setup \
+in <Input Method> panel
+click: Add \
+find: Vietnamese -> Unikey \
+click: Add \
+
+# set ibus-unikey run automaticaly when starting os \
+press window on keyboard \
+find key word: Autostart \
+On the Autostart panel: \
+click Add Program -> guid to (/usr/bin/ibus-daemon) where ibus-unikey was installed \
+click OK
+NOTE: status: Enabled
